@@ -1,0 +1,13 @@
+.about-body {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	height: calc(100vh - 70px);
+	background-image: url("../../../public/R.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.about-text {
+}
