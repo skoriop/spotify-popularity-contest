@@ -1,5 +1,12 @@
 import "./style.css";
 
-const Header = () => {};
+const Header = () => {
+	return (
+		<div className="header-bar">
+			<img className="header-logo" src="logo.png" />
+			<h1 className="header-title">Spotify Popularity Contest</h1>
+		</div>
+	);
+};
 
 export default Header;
