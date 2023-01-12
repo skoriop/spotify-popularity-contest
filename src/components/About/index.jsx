@@ -1,15 +1,15 @@
 import "./style.css";
 
 const About = () => {
+	const url = "https://www.google.com";
 	return (
 		<div className="about-body">
-			<p className="about-text">
-				Guess which song from your playlist is more popular
-			</p>
-			<button className="login">
-				<img className="login-logo" />
-				<p className="login-text">Login with Spotify</p>
-			</button>
+			<h3 className="about-text">
+				Which songs from your playlist are more popular?
+			</h3>
+			<a href={url}>
+				<img className="login" src="button.png" />
+			</a>
 		</div>
 	);
 };

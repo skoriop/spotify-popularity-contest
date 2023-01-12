@@ -8,6 +8,7 @@
 	padding: 5px;
 	height: 60px;
 	background: linear-gradient(to left, #ff8a00, #e52e71);
+	opacity: 0.8;
 }
 
 .header-logo {
@@ -16,7 +17,7 @@
 }
 
 .header-title {
-	font-family: "Roboto Mono";
+	font-family: "Roboto Mono", monospace;
 	font-size: 30px;
 	color: #ffffff;
 }

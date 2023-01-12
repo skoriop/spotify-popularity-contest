@@ -1,13 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@300&display=swap");
+
 .about-body {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	height: calc(100vh - 70px);
-	background-image: url("../../../public/R.jpg");
+	background-image: url("../../../public/R2.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+	box-shadow: 0 3000px rgba(255, 230, 204, 0.4) inset;
 }
 
 .about-text {
+	font-family: "Sofia Sans", sans-serif;
+	font-size: 60px;
+	color: #3d0099;
+	padding-left: 35px;
+	margin-top: 50px;
+	width: 700px;
+}
+
+.login {
+	margin-left: 30px;
+	height: 60px;
+	width: 100%;
 }
