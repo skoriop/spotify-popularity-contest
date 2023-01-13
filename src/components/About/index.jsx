@@ -1,4 +1,6 @@
 import { loginURL } from "../../middleware/auth";
+
+import login from "../../assets/login.png";
 import "./style.css";
 
 const About = () => {
@@ -8,7 +10,7 @@ const About = () => {
 				Which songs from your playlist are more popular?
 			</h3>
 			<a href={loginURL}>
-				<img className="login" alt="Login to Spotify" src="button.png" />
+				<img className="login" alt="Login to Spotify" src={login} />
 			</a>
 		</div>
 	);
