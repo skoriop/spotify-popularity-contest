@@ -1,0 +1,13 @@
+.game-view {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	gap: 0px;
+	height: calc(100vh - 70px);
+}
+
+.game-item {
+	width: 50vw;
+	padding: 0px;
+	margin: 0px;
+}

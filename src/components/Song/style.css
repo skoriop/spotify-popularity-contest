@@ -1,0 +1,9 @@
+.song-view {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 75px);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	box-shadow: 0 3000px #8e4c0030 inset;
+}

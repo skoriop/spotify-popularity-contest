@@ -11,6 +11,7 @@ const Game = () => {
 	const [offset, setOffset] = useState(0);
 	const [leftSong, setLeftSong] = useState({});
 	const [rightSong, setRightSong] = useState({});
+	const [score, setScore] = useState(0);
 
 	const [response, setResponse] = useState([]);
 	useEffect(() => {
@@ -26,18 +27,46 @@ const Game = () => {
 		if (!total) return null;
 		let s1, s2;
 		do {
-			s1 = songList[Math.floor(Math.random() * 50)];
-			s2 = songList[Math.floor(Math.random() * 50)];
-		} while (s1?.track.name === s2?.track.name);
+			s1 = songList[Math.floor(Math.random() * 50)].track;
+			s2 = songList[Math.floor(Math.random() * 50)].track;
+		} while (s1?.name === s2?.name || s1?.popularity === s2?.popularity);
 		setLeftSong(s1);
 		setRightSong(s2);
 		setOffset(Math.floor(Math.random() * (total - 50)));
 	};
 
+	const check = (id) => {
+		// console.log(leftSong.popularity + " vs " + rightSong.popularity);
+		if (id === 0) {
+			if (leftSong?.popularity > rightSong?.popularity) {
+				setScore(score + 1);
+			}
+		} else {
+			if (rightSong?.popularity > leftSong?.popularity) {
+				setScore(score + 1);
+			}
+		}
+		getSongs();
+	};
+
 	return (
-		<div className="game-view">
-			<button onClick={getSongs}>clickme</button>
-			<Song />
+		<div>
+			<div className="game-view">
+				{!leftSong.name && !rightSong.name && (
+					<button onClick={() => getSongs()}>Start</button>
+				)}
+				{leftSong.name && (
+					<button onClick={() => check(0)} className="game-item">
+						<Song song={leftSong} />
+					</button>
+				)}
+				{rightSong.name && (
+					<button onClick={() => check(1)} className="game-item">
+						<Song song={rightSong} />
+					</button>
+				)}
+			</div>
+			<h1>{score}</h1>
 		</div>
 	);
 };
