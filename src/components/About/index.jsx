@@ -8,7 +8,7 @@ const About = () => {
 				Which songs from your playlist are more popular?
 			</h3>
 			<a href={loginURL}>
-				<img className="login" src="button.png" />
+				<img className="login" alt="Login to Spotify" src="button.png" />
 			</a>
 		</div>
 	);
