@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+.start-button {
+	width: 100vw;
+	border: none;
+	background-image: linear-gradient(
+			rgba(120, 120, 120, 0.7),
+			rgba(120, 120, 120, 0.7)
+		),
+		url("../../../public/crowd.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	box-shadow: 0 3000px #66666630 inset;
+	color: #dddddd;
+	font-family: "Roboto Slab", serif;
+	font-size: 50px;
+}
+
 .game-view {
 	display: flex;
 	flex-direction: row;
@@ -8,6 +27,7 @@
 
 .game-item {
 	width: 50vw;
+	border: none;
 	padding: 0px;
 	margin: 0px;
 }

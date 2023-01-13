@@ -17,7 +17,12 @@ const Game = () => {
 	useEffect(() => {
 		callAPI(`/me/tracks?offset=${offset}&limit=50`, token)
 			.then((res) => setResponse(res.data))
-			.catch((e) => console.error(e));
+			.catch((e) => {
+				console.error(e);
+				if (localStorage.getItem("token"))
+					localStorage.removeItem("token");
+				window.location.reload();
+			});
 	}, [offset]);
 
 	const songList = response.items;
@@ -53,7 +58,9 @@ const Game = () => {
 		<div>
 			<div className="game-view">
 				{!leftSong.name && !rightSong.name && (
-					<button onClick={() => getSongs()}>Start</button>
+					<button onClick={() => getSongs()} className="start-button">
+						Start
+					</button>
 				)}
 				{leftSong.name && (
 					<button onClick={() => check(0)} className="game-item">
@@ -66,7 +73,7 @@ const Game = () => {
 					</button>
 				)}
 			</div>
-			<h1>{score}</h1>
+			{/* <h1>{score}</h1> */}
 		</div>
 	);
 };
