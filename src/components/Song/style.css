@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto+Slab&display=swap");
 
 .song-view {
 	display: flex;
@@ -10,13 +10,19 @@
 	background-size: cover;
 	background-position: center;
 	box-shadow: 0 3000px #8e4c0010 inset;
-	color: #dddddd;
 }
 
 .song-title {
-	font-family: "Roboto Slab", serif;
+	font-family: "Oswald", sans-serif;
+	font-size: 40px;
+	/* color: #333; */
+	color: #dddddd;
+	text-transform: uppercase;
 }
 
 .song-artist {
 	font-family: "Roboto Slab", serif;
+	font-size: 18px;
+	/* color: #333; */
+	color: #dddddd;
 }

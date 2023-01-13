@@ -7,7 +7,7 @@
 	gap: 15px;
 	padding: 5px;
 	height: 60px;
-	background: linear-gradient(to left, #ff8a00, #e52e71);
+	background: linear-gradient(to right, #e52e71ee, #ff8a00ee);
 	opacity: 0.8;
 }
 

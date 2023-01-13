@@ -55,25 +55,23 @@ const Game = () => {
 	};
 
 	return (
-		<div>
-			<div className="game-view">
-				{!leftSong.name && !rightSong.name && (
-					<button onClick={() => getSongs()} className="start-button">
-						Start
-					</button>
-				)}
-				{leftSong.name && (
-					<button onClick={() => check(0)} className="game-item">
-						<Song song={leftSong} />
-					</button>
-				)}
-				{rightSong.name && (
-					<button onClick={() => check(1)} className="game-item">
-						<Song song={rightSong} />
-					</button>
-				)}
-			</div>
-			{/* <h1>{score}</h1> */}
+		<div className="game-view">
+			{!leftSong.name && !rightSong.name && (
+				<button onClick={() => getSongs()} className="start-button">
+					START
+				</button>
+			)}
+			{leftSong.name && (
+				<button onClick={() => check(0)} className="game-item">
+					<Song song={leftSong} />
+				</button>
+			)}
+			{rightSong.name && (
+				<button onClick={() => check(1)} className="game-item">
+					<Song song={rightSong} />
+				</button>
+			)}
+			<h1 className="score">SCORE: {score}</h1>
 		</div>
 	);
 };
