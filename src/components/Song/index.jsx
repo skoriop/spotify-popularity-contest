@@ -1,6 +1,8 @@
+import AnimatedNumbers from "react-animated-numbers";
+
 import "./style.css";
 
-const Song = ({ id, song }) => {
+const Song = ({ song, reveal, gameState }) => {
 	return (
 		<div
 			className="song-view"
@@ -19,6 +21,14 @@ const Song = ({ id, song }) => {
 				})}
 				{" |"}
 			</h3>
+			{reveal && (
+				<div className={"song-popularity state" + gameState}>
+					<AnimatedNumbers
+						animateToNumber={song?.popularity}
+						configs={[{ mass: 1, tension: 180, friction: 60 }]}
+					></AnimatedNumbers>
+				</div>
+			)}
 		</div>
 	);
 };

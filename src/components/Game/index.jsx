@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import Song from "../Song";
 
 import { callAPI } from "../../middleware/api";
@@ -6,22 +7,25 @@ import { callAPI } from "../../middleware/api";
 import "./style.css";
 
 const Game = () => {
-	const token = localStorage.getItem("token");
-
 	const [offset, setOffset] = useState(0);
 	const [leftSong, setLeftSong] = useState({});
 	const [rightSong, setRightSong] = useState({});
+
 	const [score, setScore] = useState(0);
+	const [reveal, setReveal] = useState(false);
+	const [leftState, setLeftState] = useState(0);
+	const [rightState, setRightState] = useState(0);
 
 	const [response, setResponse] = useState([]);
 	useEffect(() => {
-		callAPI(`/me/tracks?offset=${offset}&limit=50`, token)
+		callAPI(`/me/tracks?offset=${offset}&limit=50`, localStorage.getItem("token"))
 			.then((res) => setResponse(res.data))
 			.catch((e) => {
 				console.error(e);
-				if (localStorage.getItem("token"))
+				if (localStorage.getItem("token")) {
 					localStorage.removeItem("token");
-				window.location.reload();
+					window.location.reload();
+				}
 			});
 	}, [offset]);
 
@@ -41,17 +45,27 @@ const Game = () => {
 	};
 
 	const check = (id) => {
-		// console.log(leftSong.popularity + " vs " + rightSong.popularity);
-		if (id === 0) {
+		setReveal(true);
+		setTimeout(() => {
 			if (leftSong?.popularity > rightSong?.popularity) {
-				setScore(score + 1);
+				setLeftState(1);
+				setRightState(-1);
+			} else {
+				setLeftState(-1);
+				setRightState(1);
 			}
-		} else {
-			if (rightSong?.popularity > leftSong?.popularity) {
-				setScore(score + 1);
-			}
-		}
-		getSongs();
+			setTimeout(() => {
+				if (
+					(id === 0 && leftSong?.popularity > rightSong?.popularity) ||
+					(id === 1 && rightSong?.popularity > leftSong?.popularity)
+				)
+					setScore(score + 1);
+				setLeftState(0);
+				setRightState(0);
+				setReveal(false);
+				getSongs();
+			}, 1000);
+		}, 3000);
 	};
 
 	return (
@@ -63,12 +77,12 @@ const Game = () => {
 			)}
 			{leftSong.name && (
 				<button onClick={() => check(0)} className="game-item">
-					<Song song={leftSong} />
+					<Song song={leftSong} reveal={reveal} gameState={leftState} />
 				</button>
 			)}
 			{rightSong.name && (
 				<button onClick={() => check(1)} className="game-item">
-					<Song song={rightSong} />
+					<Song song={rightSong} reveal={reveal} gameState={rightState} />
 				</button>
 			)}
 			<h1 className="score">SCORE: {score}</h1>

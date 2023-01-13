@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Oswald&family=Roboto+Slab&display=swap");
 
 .song-view {
 	display: flex;
@@ -25,4 +25,20 @@
 	font-size: 18px;
 	/* color: #333; */
 	color: #dddddd;
+}
+
+.song-popularity {
+	font-family: "Montserrat", sans-serif;
+	color: #dddddd;
+	transition: color 0.75s;
+	font-size: 40px;
+	margin-top: 30px;
+}
+
+.state1 {
+	color: #00ff00;
+}
+
+.state-1 {
+	color: #ff0000;
 }
