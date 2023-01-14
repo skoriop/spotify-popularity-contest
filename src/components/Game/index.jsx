@@ -27,13 +27,7 @@ const Game = () => {
 			localStorage.getItem("token")
 		)
 			.then((res) => setResponse(res.data))
-			.catch((e) => {
-				console.error(e);
-				if (localStorage.getItem("token")) {
-					localStorage.removeItem("token");
-					window.location.reload();
-				}
-			});
+			.catch((e) => console.error(e));
 	}, [offset]);
 
 	const songList = response.items;
