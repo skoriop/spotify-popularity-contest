@@ -4,8 +4,8 @@
 	width: 100vw;
 	border: none;
 	background-image: linear-gradient(
-			rgba(120, 120, 120, 0.7),
-			rgba(120, 120, 120, 0.7)
+			rgba(120, 120, 120, 0.6),
+			rgba(120, 120, 120, 0.6)
 		),
 		url("../../assets/start.jpg");
 	background-repeat: no-repeat;
@@ -39,4 +39,24 @@
 	font-family: "Oswald", sans-serif;
 	font-size: 25px;
 	color: #dddddd;
+}
+
+.game-over {
+	width: 100vw;
+	border: none;
+	background-image: linear-gradient(
+			rgba(120, 120, 120, 0.6),
+			rgba(120, 120, 120, 0.6)
+		),
+		url("../../assets/start.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	box-shadow: 0 3000px #66666630 inset;
+}
+
+.game-over h2 {
+	color: #dddddd;
+	font-family: "Oswald", sans-serif;
+	font-size: 40px;
 }

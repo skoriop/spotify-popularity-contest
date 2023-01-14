@@ -7,18 +7,25 @@ import { callAPI } from "../../middleware/api";
 import "./style.css";
 
 const Game = () => {
+	const gameLength = 10;
+
 	const [offset, setOffset] = useState(0);
 	const [leftSong, setLeftSong] = useState({});
 	const [rightSong, setRightSong] = useState({});
 
+	const [turns, setTurns] = useState(0);
 	const [score, setScore] = useState(0);
 	const [reveal, setReveal] = useState(false);
 	const [leftState, setLeftState] = useState(0);
 	const [rightState, setRightState] = useState(0);
+	const [gameOver, setGameOver] = useState(false);
 
 	const [response, setResponse] = useState([]);
 	useEffect(() => {
-		callAPI(`/me/tracks?offset=${offset}&limit=50`, localStorage.getItem("token"))
+		callAPI(
+			`/me/tracks?offset=${offset}&limit=50`,
+			localStorage.getItem("token")
+		)
 			.then((res) => setResponse(res.data))
 			.catch((e) => {
 				console.error(e);
@@ -31,6 +38,13 @@ const Game = () => {
 
 	const songList = response.items;
 	const total = response.total;
+
+	const newGame = () => {
+		setScore(0);
+		setTurns(0);
+		setGameOver(false);
+		getSongs();
+	};
 
 	const getSongs = () => {
 		if (!total) return null;
@@ -56,36 +70,55 @@ const Game = () => {
 			}
 			setTimeout(() => {
 				if (
-					(id === 0 && leftSong?.popularity > rightSong?.popularity) ||
+					(id === 0 &&
+						leftSong?.popularity > rightSong?.popularity) ||
 					(id === 1 && rightSong?.popularity > leftSong?.popularity)
 				)
 					setScore(score + 1);
 				setLeftState(0);
 				setRightState(0);
 				setReveal(false);
-				getSongs();
-			}, 1000);
+				setTurns(turns + 1);
+				if (turns === gameLength - 1) setGameOver(true);
+				else getSongs();
+			}, 1250);
 		}, 3000);
 	};
 
 	return (
 		<div className="game-view">
-			{!leftSong.name && !rightSong.name && (
-				<button onClick={() => getSongs()} className="start-button">
+			{!gameOver && !leftSong.name && !rightSong.name && (
+				<button onClick={() => newGame()} className="start-button">
 					START
 				</button>
 			)}
-			{leftSong.name && (
+			{!gameOver && leftSong.name && (
 				<button onClick={() => check(0)} className="game-item">
-					<Song song={leftSong} reveal={reveal} gameState={leftState} />
+					<Song
+						song={leftSong}
+						reveal={reveal}
+						gameState={leftState}
+					/>
 				</button>
 			)}
-			{rightSong.name && (
+			{!gameOver && rightSong.name && (
 				<button onClick={() => check(1)} className="game-item">
-					<Song song={rightSong} reveal={reveal} gameState={rightState} />
+					<Song
+						song={rightSong}
+						reveal={reveal}
+						gameState={rightState}
+					/>
 				</button>
 			)}
-			<h1 className="score">SCORE: {score}</h1>
+			{!gameOver && <h1 className="score">SCORE: {score}</h1>}
+			{gameOver && (
+				<button onClick={() => newGame()} className="game-over">
+					<h2>
+						YOUR SCORE : {score}/{gameLength}
+					</h2>
+					<h2>PLAY AGAIN?</h2>
+				</button>
+			)}
 		</div>
 	);
 };

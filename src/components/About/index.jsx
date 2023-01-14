@@ -7,7 +7,7 @@ const About = () => {
 	return (
 		<div className="about-body">
 			<h3 className="about-text">
-				Which songs from your playlist are more popular?
+				Which songs from your playlist are more popular on Spotify?
 			</h3>
 			<a href={loginURL}>
 				<img className="login" alt="Login to Spotify" src={login} />
