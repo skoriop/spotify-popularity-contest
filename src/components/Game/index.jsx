@@ -49,7 +49,7 @@ const Game = () => {
 		} while (s1?.name === s2?.name || s1?.popularity === s2?.popularity);
 		setLeftSong(s1);
 		setRightSong(s2);
-		setOffset(Math.floor(Math.random() * (total - 50)));
+		setOffset(Math.max(0, Math.floor(Math.random() * (total - 50))));
 	};
 
 	const check = (id) => {
