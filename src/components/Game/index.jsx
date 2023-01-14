@@ -44,8 +44,8 @@ const Game = () => {
 		if (!total) return null;
 		let s1, s2;
 		do {
-			s1 = songList[Math.floor(Math.random() * 50)].track;
-			s2 = songList[Math.floor(Math.random() * 50)].track;
+			s1 = songList[Math.floor(Math.random() * songList.length)].track;
+			s2 = songList[Math.floor(Math.random() * songList.length)].track;
 		} while (s1?.name === s2?.name || s1?.popularity === s2?.popularity);
 		setLeftSong(s1);
 		setRightSong(s2);
