@@ -19,13 +19,10 @@ const Game = () => {
 	const [leftState, setLeftState] = useState(0);
 	const [rightState, setRightState] = useState(0);
 	const [gameOver, setGameOver] = useState(false);
-
+	//use reduce, usememo, usecallback
 	const [response, setResponse] = useState([]);
 	useEffect(() => {
-		callAPI(
-			`/me/tracks?offset=${offset}&limit=50`,
-			localStorage.getItem("token")
-		)
+		callAPI(`/me/tracks?offset=${offset}&limit=50`, localStorage.getItem("token"))
 			.then((res) => setResponse(res.data))
 			.catch((e) => console.error(e));
 	}, [offset]);
@@ -64,8 +61,7 @@ const Game = () => {
 			}
 			setTimeout(() => {
 				if (
-					(id === 0 &&
-						leftSong?.popularity > rightSong?.popularity) ||
+					(id === 0 && leftSong?.popularity > rightSong?.popularity) ||
 					(id === 1 && rightSong?.popularity > leftSong?.popularity)
 				)
 					setScore(score + 1);
@@ -88,20 +84,12 @@ const Game = () => {
 			)}
 			{!gameOver && leftSong.name && (
 				<button onClick={() => check(0)} className="game-item">
-					<Song
-						song={leftSong}
-						reveal={reveal}
-						gameState={leftState}
-					/>
+					<Song song={leftSong} reveal={reveal} gameState={leftState} />
 				</button>
 			)}
 			{!gameOver && rightSong.name && (
 				<button onClick={() => check(1)} className="game-item">
-					<Song
-						song={rightSong}
-						reveal={reveal}
-						gameState={rightState}
-					/>
+					<Song song={rightSong} reveal={reveal} gameState={rightState} />
 				</button>
 			)}
 			{!gameOver && <h1 className="score">SCORE: {score}</h1>}
