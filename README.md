@@ -21,3 +21,7 @@ Since Spotify [doesn't allow new apps to be accessed by new users](https://devel
 -   In [the website](https://spotify-popularity-contest.netlify.app/), open Developer Tools and go to _Application -> Local Storage -> https://spotify-popularity-contest.netlify.app/_
 -   Double click below _Key_ to create a new entry
 -   Set the key to "token" (without quotes) and the value to the OAuth token from Spotify
+
+## Update 2:
+
+Spotify has approved it, so there's no need of all this stuff :)
